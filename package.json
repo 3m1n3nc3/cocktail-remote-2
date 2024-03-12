@@ -10,7 +10,8 @@
     "format": "prettier --write \"**/*.{js,ts,vue,scss,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0",
     "dev": "quasar dev",
-    "build": "quasar build"
+    "build": "quasar build",
+    "android": "quasar build -m capacitor -T android --ide"
   },
   "dependencies": {
     "@awesome-cordova-plugins/bluetooth-serial": "^6.6.0",

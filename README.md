@@ -54,7 +54,7 @@ Where the BTS.write() function which is mapped to `cordova-bluetooth-serial` plu
 ## Listening for Events
 
 The app expects the Bluetooth module to return two specific string response formats which are subsequently treated as events and handled as needed.
-The first is the `duration:[number]` which passes the duration for which a command will run from Arduino to the phone and the other is the `message[string]` which will be interpreted as a notification to be shown to the user.
+The first is the `duration:[number]` which passes the duration for which a command will run from Arduino to the phone and the other is the `message:[string]` which will be interpreted as a notification to be shown to the user.
 
 ## Install the dependencies
 

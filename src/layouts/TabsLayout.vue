@@ -13,7 +13,7 @@
     <q-page-container>
       <router-view></router-view>
     </q-page-container>
-    <q-footer bordered class="bg-white text-primary">
+    <q-footer bordered class="absolute bottom-0 bg-white text-primary">
       <q-tabs
         active-color="primary"
         indicator-color="transparent"

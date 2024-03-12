@@ -36,6 +36,20 @@
             </q-btn>
           </div>
         </ExploreContainer>
+        <div class="w-full q-pa-md" v-if="progress > 0">
+          <q-linear-progress
+            size="25px"
+            color="primary"
+            :value="progress / 100"
+          >
+            <div class="flex absolute-full flex-center">
+              <q-badge
+                color="white"
+                text-color="accent"
+                :label="progress + '%'"
+              /></div
+          ></q-linear-progress>
+        </div>
       </template>
     </BluetoothInterface>
   </q-page>
@@ -67,7 +81,7 @@ const error = ref('');
 const status = ref('');
 const sending = ref<boolean>(false);
 const command = ref<number>();
-const progress = ref<number>();
+const progress = ref<number>(0);
 const connected = ref<BluetoothDevice | null>(null);
 
 const actions: Array<MainAction> = [
@@ -165,7 +179,7 @@ const onConnected = async (device: BluetoothDevice) => {
             if (['message', 'duration'].includes(method)) {
               eventsMap[method](param, (data: string | number): void => {
                 if (method === 'duration' && typeof data === 'number') {
-                  progress.value = data;
+                  progress.value = data < 100 ? data : 0;
                 }
               });
             }
