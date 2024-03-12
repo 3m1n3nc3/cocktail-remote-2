@@ -59,7 +59,7 @@ import { MainAction } from 'src/interfaces';
 import { ref } from 'vue';
 import { BluetoothDevice } from '@speedengineering/capacitor-bluetooth-serial';
 import { BluetoothSerial as BTS } from '@awesome-cordova-plugins/bluetooth-serial';
-import { toast } from 'src/options/helpers';
+import { eventsMap, toast } from 'src/options/helpers';
 import { Haptics } from '@capacitor/haptics';
 import { Preferences } from '@capacitor/preferences';
 
@@ -67,6 +67,7 @@ const error = ref('');
 const status = ref('');
 const sending = ref<boolean>(false);
 const command = ref<number>();
+const progress = ref<number>();
 const connected = ref<BluetoothDevice | null>(null);
 
 const actions: Array<MainAction> = [
@@ -158,7 +159,17 @@ const onConnected = async (device: BluetoothDevice) => {
       if (data instanceof ArrayBuffer) {
         arrayBufferToString(data, 'UTF-8').then((e) => {
           status.value = e;
-          toast(status.value || 'Done.');
+          const map = e.split(':');
+          if (map.length >= 2) {
+            const [method, param] = map as ['message' | 'duration', never];
+            if (['message', 'duration'].includes(method)) {
+              eventsMap[method](param, (data: string | number): void => {
+                if (method === 'duration' && typeof data === 'number') {
+                  progress.value = data;
+                }
+              });
+            }
+          }
         });
       } else {
         console.log(data);
