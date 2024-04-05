@@ -53,7 +53,7 @@ Where the BTS.write() function which is mapped to `cordova-bluetooth-serial` plu
 
 ### In simple terms
 
-Each cocktail button is attached to a numeric string that corresponds with the command for the associated cocktail as defined in the Arduino sketch, when the button is pressed this string is sent as a bluetooth packet through the module which will be decoded and converted to the `unsigned long` required to process the selected cocktail. 
+Each cocktail button is attached to a numeric string that corresponds with the command for the associated cocktail as defined in the Arduino sketch, when the button is pressed, this string is sent as a bluetooth packet through the module which will be decoded and converted to the `unsigned long` required to process the selected cocktail. 
 
 ## Listening for Events
 
