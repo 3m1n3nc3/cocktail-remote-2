@@ -51,6 +51,10 @@ Once a Cocktail button is tapped on, the following codeblock is executed to send
 ![Executed Codeblock](image-4.png)
 Where the BTS.write() function which is mapped to `cordova-bluetooth-serial` plugin does the work of writing the command to the bluetooth module.
 
+### In simple terms
+
+Each cocktail button is attached to a numeric string that corresponds with the command for the associated cocktail as defined in the Arduino sketch, when the button is pressed this string is sent as a bluetooth packet through the module which will be decoded and converted to the `unsigned long` required to process the selected cocktail. 
+
 ## Listening for Events
 
 The app expects the Bluetooth module to return two specific string response formats which are subsequently treated as events and handled as needed.
